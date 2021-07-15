@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Python</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Shawn Santo" />
+    <link rel="stylesheet" href="css/slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Python
+## 2020 DSS Bootcamp
+### Shawn Santo
+### 08-03-20
+
+---
+
+
+
+
+## Supplementary materials
+
+Companion videos
+
+1. [Python basics and data structures](https://warpwire.duke.edu/w/VQEEAA/)
+2. [Control flow](https://warpwire.duke.edu/w/WQEEAA/)
+3. [Functions](https://warpwire.duke.edu/w/WwEEAA/)
+4. [Classes, methods, and attributes](https://warpwire.duke.edu/w/VwEEAA/)
+5. [Libraries](https://warpwire.duke.edu/w/XQEEAA/)
+
+---
+
+class: inverse, center, middle
+
+# Preliminaries
+
+---
+
+## Before you get started
+
+In order to actively follow along you have a few options.
+
+- Use a docker container from Duke OIT
+
+    1. Go to https://vm-manage.oit.duke.edu/containers
+    2. Log in with your Duke NetID and password
+    3. Find `Jupyter - interactive data science and scientific computing notebooks`
+    4. Click the link to create your environment
+    
+- Get Python and Jupyter notebook for your own computer
+
+    1. Go to https://www.anaconda.com/distribution/
+    2. Download Python 3.x version based on your OS
+    3. Follow install instructions at https://docs.anaconda.com/anaconda/install/
+    
+- Use RStudio with R Markdown (run Python, but no Jupyter notebook)
+
+    1. Log in to the DSS RStudio server
+    2. In an R Markdown file you can insert Python chunks instead of R chunks
+    3. Click the dropdown arrow next to insert
+    
+---
+
+class: inverse, center, middle
+
+# Why Python?
+
+---
+
+## KDnuggets poll
+
+.center.middle[
+
+![](images/kd_nuggets.png)
+
+]
+
+*Source*: https://www.kdnuggets.com/2020/06/data-science-tools-popularity-animated.html
+
+---
+
+## Stack Overflow trends
+
+To see how technologies have trended over time based on use of their 
+tags since 2008 we can look at Stack Overflow trends.
+
+.center[
+
+![](images/stack_overflow.png)
+
+]
+
+---
+
+class: inverse, center, middle
+
+# Jupyter notebook
+
+---
+
+## Overview of the notebook
+
+Bimodal interface: edit mode and command mode
+
+&lt;br&gt;
+
+Click in a cell or hit `enter` to enter edit mode
+.center[
+![](images/edit-mode.png)
+]
+
+When in edit mode you can type code or write text with markdown.
+
+&lt;br&gt;
+
+Hit `esc` to enter command mode
+.center[
+![](images/command_mode.png)
+]
+
+When in command mode you can make edits to the notebook, but not individual
+cells.
+
+---
+
+## Notebook shortcuts
+
+In **edit** mode:
+
+- Run cell and add new cell: `shift + enter`
+- Add a line within a cell: `enter`
+
+--
+
+In **command** mode:
+
+- Save the notebook: `s`
+- Change cell to markdown: `m`
+- Change cell to code: `y`
+- Cut, copy, paste, delete a cell: `x`, `c`, `v`, `d`
+- Add a cell above, below: `a`, `b`
+
+&lt;br&gt;&lt;br&gt;
+
+The point-and-click interface is also an option to execute these commands.
+
+---
+
+## Jupyter notebook versus R Markdown
+
+- Similar to R Markdown, Jupyter notebooks allow you to write code and text in
+  one easy to read document that is reproducible and easy to share with others.
+
+- A Jupyter notebook does not knit to an HTML, PDF or Word file. However, you
+  can embed HTML into a notebook.
+
+- For a more detailed comparison see 
+  [The First Notebook War](https://yihui.name/en/2018/09/notebook-war/).
+
+---
+
+class: inverse, center, middle
+
+# Python basics
+
+---
+
+## Arithmetic operators
+
+Python supports the standard arithmetic operations.
+
+.pull-left[
+
+```python
+10 + 8
+```
+
+```
+18
+```
+
+```python
+3 - 2
+```
+
+```
+1
+```
+
+```python
+100 / 6
+```
+
+```
+16.666666666666668
+```
+
+```python
+80 * 0
+```
+
+```
+0
+```
+]
+
+.pull-right[
+
+```python
+100 // 3 # integer division
+```
+
+```
+33
+```
+
+```python
+13 % 4   # modulo operator
+```
+
+```
+1
+```
+
+```python
+4 ** 3   # raise to power
+```
+
+```
+64
+```
+]
+
+&lt;br/&gt;
+
+*No need to worry about the difference between `int` and `float`.*
+
+---
+
+## Comparison operators
+
+
+```python
+5 &gt; 0
+```
+
+```
+True
+```
+
+```python
+4 &lt; 100
+```
+
+```
+True
+```
+
+```python
+3 == 3 # equality
+```
+
+```
+True
+```
+
+```python
+10 &lt;= (5 * 1.9)
+```
+
+```
+False
+```
+
+```python
+0 != 1 # not equal
+```
+
+```
+True
+```
+
+---
+
+Use boolean key words `and`, `or`, and `not` for multiple comparisons.
+
+
+```python
+(5 &gt; 10) or (8 / 2 == 4)
+```
+
+```
+True
+```
+
+```python
+True and (8 &gt; 64 ** 0.5)
+```
+
+```
+False
+```
+
+```python
+not True and (8 &gt; 64 ** 0.5)
+```
+
+```
+False
+```
+
+```python
+not (True and (8 &gt; 64 ** 0.5))
+```
+
+```
+True
+```
+
+Parentheses matter. Also, python is case sensitive. True != TRUE unless 
+you set a variable TRUE = True which is something you probably shouldn't do.
+
+Operators `&amp;`, `|`, and `^` are bitwise operators; you probably will not need
+them. However, these operators are used in R, so try not to get confused.
+
+---
+
+## Python versus R
+
+Key differences in operators in Python versus R.
+
+&lt;br/&gt;
+
+| Operator purpose |  Python |        R                |
+|-----------------:|:-------:|:-----------------------:|
+|             true |  `True` |  `TRUE`,  `T`           |
+|            false | `False` | `FALSE`,  `F`           |
+|               or |   `or`  | `\(\vert\)`,  `\(\vert \vert\)` |
+|              and |  `and`  |       `&amp;`, `&amp;&amp;`         |
+|              not |  `not`  |       `!`               |
+|           modulo |   `%`   |      `%%`               |
+|   exponentiation |   `**`  |       `^`               |
+| integer division |   `//`  |      `%/%`              |
+
+---
+
+## Object assignment
+
+Use a single `=` for object assignment.
+
+
+```python
+a = 10
+a
+```
+
+```
+10
+```
+
+```python
+b = [-10, 0, "computing", "bootcamp", 5 / 2]
+b
+```
+
+```
+[-10, 0, 'computing', 'bootcamp', 2.5]
+```
+
+```python
+my_string = "This is a longgggg string"
+my_string
+```
+
+```
+'This is a longgggg string'
+```
+
+```python
+nums = list(range(7))
+nums
+```
+
+```
+[0, 1, 2, 3, 4, 5, 6]
+```
+
+---
+
+## Shortcut operation and assignment
+
+Unlike R, Python supports things like
+
+
+```python
+a = 5
+a += 3
+a
+```
+
+```
+8
+```
+
+
+```python
+val = 10
+val **= 3
+val
+```
+
+```
+1000
+```
+
+These are equivalent to `a = a + 3` and `val = val ** 3`, respectively.
+
+
+---
+
+class: inverse, center, middle
+
+# Data types and structures
+
+---
+
+## Built-in data structures
+
+Python has four primary built-in data structures.
+
+- **List**: an ordered collection of mutable items
+
+- **Tuple**: an immutable list
+
+- **Dictionary**: an unordered collection of key-value pairs
+
+- **Set**: an unordered collection of unique objects
+
+&lt;br/&gt;
+
+These data structures will generally consist of **integers**, 
+**floating point** numbers, **strings**, or **booleans**. 
+Using the function `type()` will identify
+the data type or structure. 
+
+&lt;br/&gt;&lt;br/&gt;
+
+*Hit `p` while viewing the HTML slides for an exhaustive
+table of the built-in python data types and structures.*
+
+???
+
+| Data type / structure | Python characterization            |
+|:----------------------|:-----------------------------------|
+| Text Type:            | `str`                              |
+| Numeric Types:        | `int`, `float`, `complex`          |
+| Sequence Types:       | `list`, `tuple`, `range`           |
+| Mapping Type:         | `dict`                             |
+| Set Types:            | `set`, `frozenset`                 |
+| Boolean Type:         | `bool`                             |
+| Binary Types:         | `bytes`, `bytearray`, `memoryview` |
+
+---
+
+## Lists
+
+- Lists are ordered sequences that can contain a variety of objects, even
+  other lists.
+  
+- A pair of `[` `]` can be used to create a list with each component separated
+  by a comma.
+
+- The first item in a list is considered to be in position 0, not position 1.
+
+
+```python
+my_list = [9, [1, 1, 1], 10, "swimming", "hiking"]
+my_list
+```
+
+```
+[9, [1, 1, 1], 10, 'swimming', 'hiking']
+```
+
+.pull-left[
+
+Indexing
+
+
+```python
+my_list[0]
+```
+
+```
+9
+```
+
+```python
+my_list[-1] 
+```
+
+```
+'hiking'
+```
+]
+
+.pull-right[
+
+Slicing `start:stop:step`
+
+
+```python
+my_list[1:3]
+```
+
+```
+[[1, 1, 1], 10]
+```
+
+```python
+my_list[1:4:2]
+```
+
+```
+[[1, 1, 1], 'swimming']
+```
+]
+
+---
+
+## Tuples
+
+- Tuples are similar to lists except that they are immutable. You won't be able
+  to reassign something once it exists in a tuple.
+
+- A pair of `(` `)` can be used to create a tuple. Each component is separated
+  by a comma.
+
+
+```python
+cars = ("subaru", "bmw", "hond", "ford")
+cars[3]
+```
+
+```
+'ford'
+```
+
+--
+
+If we try to fix the typo in `cars`, we get
+
+
+```python
+cars[2] = "honda"
+```
+
+`TypeError: 'tuple' object does not support item assignment`
+
+---
+
+## Dictionaries
+
+- Dictionaries are unordered collection of key-value pairs. Each key is 
+  connected to a value. The value can be any object you can create in Python.
+
+- Syntax: `{"key_1": value_1, "key_2": value_2}`
+
+
+```python
+my_bike = {"model": "trek", "style": "gravel"}
+```
+
+--
+
+Subset based on a key
+
+
+```python
+my_bike["model"]
+```
+
+```
+'trek'
+```
+
+--
+
+Add a dictionary entry
+
+
+```python
+my_bike["year"] = 2020
+my_bike
+```
+
+```
+{'model': 'trek', 'style': 'gravel', 'year': 2020}
+```
+
+---
+
+## Sets
+
+- Sets are an unordered collection of unique objects that can be created with
+  a pair of `{` `}`, where each entry is separated by a comma.
+
+- Test for membership and apply set operators that you know from set theory.
+
+
+
+
+```python
+my_set = {'a', 'b', 'c', 'd'}
+my_set
+```
+
+```
+{'a', 'c', 'd', 'b'}
+```
+
+--
+
+
+```python
+list("seewhathappens")
+```
+
+```
+['s', 'e', 'e', 'w', 'h', 'a', 't', 'h', 'a', 'p', 'p', 'e', 'n', 's']
+```
+
+```python
+my_set2 = set(list("aabbbbbbbbcddddddde"))
+my_set2
+```
+
+```
+{'c', 'd', 'e', 'b', 'a'}
+```
+
+
+---
+
+class: inverse, center, middle
+
+# Classes, methods, attributes
+
+---
+
+## A brief introduction to OOP
+
+Python is an object oriented programming (OOP) language. Objects can be
+categorized by their class type. For each class, there exists a collection of
+methods and attributes.
+
+- Methods can be thought of as functions defined for a specific class.
+
+- Attributes can be thought of as variables defined for use with respect to a 
+  class.
+
+- To access methods and attributes, type `my_object.&lt;method or attribute&gt;`,
+  where after the `.` is the selected method or attribute.
+
+---
+
+## Methods in action
+
+
+```python
+my_courses = ["STA523", "STA199", "STA521", "STA601"]
+type(my_courses)
+```
+
+```
+&lt;class 'list'&gt;
+```
+
+--
+
+
+```python
+my_courses.append("STA323") # add on an element
+my_courses
+```
+
+```
+['STA523', 'STA199', 'STA521', 'STA601', 'STA323']
+```
+
+--
+
+
+```python
+my_courses.reverse() # change the order
+my_courses
+```
+
+```
+['STA323', 'STA601', 'STA521', 'STA199', 'STA523']
+```
+
+--
+
+
+```python
+my_courses.pop() # remove last element
+```
+
+```
+'STA523'
+```
+
+```python
+my_courses
+```
+
+```
+['STA323', 'STA601', 'STA521', 'STA199']
+```
+
+---
+
+## Attributes in action
+
+
+```python
+x = 4 + 3j
+y = 0 + 1J
+
+[x.real, y. real]
+```
+
+```
+[4.0, 0.0]
+```
+
+```python
+[x.imag, y.imag]
+```
+
+```
+[3.0, 1.0]
+```
+
+&lt;br/&gt;
+
+Methods are called similar to functions with `()`; attributes are called similar
+to a variable or object. Typing `.` and hitting tab will populate the available
+methods and attributes for a given object.
+
+---
+
+## More methods in action
+
+
+```python
+my_string = "python is an object oriented programming language"
+```
+
+--
+
+
+```python
+my_string.title() # title case
+```
+
+```
+'Python Is An Object Oriented Programming Language'
+```
+
+```python
+my_string.count("o") # count the "o"s
+```
+
+```
+4
+```
+
+--
+
+
+```python
+z = (6, 0, 11, 99, -5, 0, 0)
+```
+
+--
+
+
+```python
+z.index(11) # find position of 11
+```
+
+```
+2
+```
+
+```python
+z.count(0)  # count the 0s
+```
+
+```
+3
+```
+
+---
+
+## Exercises
+
+1. Create a float variable and each of the four built-in data structures
+   discussed (list, tuple, dictionary, set). For each object, use a combination
+   of two methods or attributes and document in markdown their functionality.
+&lt;br/&gt;&lt;br/&gt;
+2. Set object `dilemma`, given below, to all lowercase. Then, reverse the 
+   order of the letters. Lastly, capitalize the first "b".
+    
+    ```python
+    dilemma = "Borrow OR Rob"
+    ```
+&lt;br/&gt;&lt;br/&gt;
+*Hint:* `dilemma[start:end:step]`. What does a negative index do?
+
+---
+
+class: inverse, center, middle
+
+# Control flow
+
+---
+
+## `if`, `for`, `while`
+
+- The syntax style of control flow in Python is based off `:` and indentations.
+  Python does not wrap code blocks for control flow with `{ }` as is
+  done in R.
+
+- There is no `switch` statement and no `repeat` statement in Python.
+
+---
+
+## `if`
+
+Syntax:
+
+.small[
+
+```python
+if condition:
+  # code block
+  # indented
+elif another_condition:
+  # code block
+  # indented
+else:
+  # code block
+  # indented
+```
+]
+
+--
+&lt;br/&gt;
+
+Example:
+
+.small[
+
+```python
+medical_cost = 180
+
+if medical_cost &lt;= 100:
+  bill = medical_cost
+elif medical_cost &lt;= 200:
+  bill = 100 + (0.5 * (medical_cost - 100))
+else:
+  bill = 150
+  
+print("Your total bill is {} dollars.".format(bill))
+```
+
+```
+Your total bill is 140.0 dollars.
+```
+]
+
+---
+
+## `for` loop
+
+Syntax:
+
+
+```python
+for index in sequence:
+  # code to be
+  # iterated
+  # again, indented
+```
+
+--
+&lt;br/&gt;
+
+Example:
+
+
+```python
+j = 1
+for i in "Duke":
+  print("Letter {index} is {letter}.\n".format(index = j, letter = i))
+  j += 1
+```
+
+```
+Letter 1 is D.
+
+Letter 2 is u.
+
+Letter 3 is k.
+
+Letter 4 is e.
+```
+
+---
+
+Some more `for` loop examples...
+
+
+```python
+squares = []
+for i in range(1, 11):
+  squares.append(i ** 2)
+  
+squares
+```
+
+```
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+```
+
+--
+
+
+```python
+d = {"language": "python", "version": 3.7, 
+     "year": 1989, "creator": "Guido van Rossum"}
+      
+for k, v in d.items():
+  print("The key is {}, and its value is {}.".format(k, v))
+```
+
+```
+The key is language, and its value is python.
+The key is version, and its value is 3.7.
+The key is year, and its value is 1989.
+The key is creator, and its value is Guido van Rossum.
+```
+
+---
+
+## `while` loop
+
+Syntax:
+
+.small[
+
+```python
+while condition:
+  # code to be
+  # iterated
+  # again, indented
+```
+]
+
+--
+&lt;br/&gt;
+
+Example:
+
+.small[
+
+```python
+j = 100
+i = 1.01
+while i &lt; j:
+  i *= i
+  print(round(i, 2))
+```
+
+```
+1.02
+1.04
+1.08
+1.17
+1.37
+1.89
+3.57
+12.77
+163.13
+```
+]
+
+---
+
+Some more `while` loop examples...
+
+
+```python
+nums = list(range(3))
+while nums:
+  num_off = nums.pop()
+  print("The number {} was removed from the list nums.".format(num_off))
+```
+
+```
+The number 2 was removed from the list nums.
+The number 1 was removed from the list nums.
+The number 0 was removed from the list nums.
+```
+
+--
+
+Python supports `break` statements.
+
+
+```python
+my_string = "I'm sleepy, "
+i = 1
+while True:
+  my_string += "z"
+  i += 1
+  if i &gt; 10:
+    break
+    
+my_string
+```
+
+```
+"I'm sleepy, zzzzzzzzzz"
+```
+
+---
+
+class: inverse, center, middle
+
+# Functions
+
+---
+
+## Defining a function
+
+As with control flow, Python relies on indentations and `:` for function style
+syntax as opposed to `{ }` in R.
+
+.small.pull-left[
+
+```python
+def func_name(arg1, arg2):
+    """
+    Docstring starts with a 
+    short description.
+
+    May have more 
+    information here.
+
+    arg1 = something
+    arg2 = something
+
+    Returns something
+
+    Example usage:
+
+    func_name(1, 2)
+    
+    """
+    
+    result = arg1 + arg2
+
+    return result
+```
+]
+
+.small.pull-right[
+
+```python
+help(func_name)
+```
+
+```
+Help on function func_name in module __main__:
+
+func_name(arg1, arg2)
+    Docstring starts with a 
+    short description.
+    
+    May have more 
+    information here.
+    
+    arg1 = something
+    arg2 = something
+    
+    Returns something
+    
+    Example usage:
+    
+    func_name(1, 2)
+```
+]
+
+---
+
+## Functions in action
+
+
+```python
+def is_prime(n):
+  """
+  This function checks if a number is prime.
+  
+  n = positive integer
+  
+  Example:
+  
+  is_prime(2)
+  is_prime(16)
+  
+  """
+  
+  if n &lt; 3:
+    result = n - 1
+  else:
+    for i in range(2, n):
+      if (n % i) == 0:
+        result = False
+        break
+    else:
+      result = True
+      
+  return bool(result)
+```
+
+---
+
+
+```python
+help(is_prime)
+```
+
+```
+Help on function is_prime in module __main__:
+
+is_prime(n)
+    This function checks if a number is prime.
+    
+    n = positive integer
+    
+    Example:
+    
+    is_prime(2)
+    is_prime(16)
+```
+
+--
+
+.pull-left[
+
+```python
+is_prime(n = 2)
+```
+
+```
+True
+```
+
+```python
+is_prime(n = 1)
+```
+
+```
+False
+```
+]
+
+.pull-right[
+
+```python
+is_prime(n = 12)
+```
+
+```
+False
+```
+
+```python
+is_prime(n = 13)
+```
+
+```
+True
+```
+]
+
+---
+
+## Function scope
+
+
+```python
+a = 0
+b = 1
+
+def my_function():
+    print("The value of b here is {}.\n".format(b))
+    a = 3
+    print("The value of a here is {}.".format(a))
+
+my_function()
+
+print("The value of a here is {}.".format(a))
+```
+
+--
+
+
+```
+The value of b here is 1.
+
+The value of a here is 3.
+```
+
+```
+The value of a here is 0.
+```
+
+---
+
+## Exercises
+
+    
+    
+    
+
+1. Write a function that takes a list and returns a list of the
+   unique elements of the inputted list in descending order. Do this without 
+   using `set()`.
+    
+    ```python
+    unique_list([1,1,1,1,2,2,3,3,3,3,4,5])
+    ```
+    
+    ```
+    [5, 4, 3, 2, 1]
+    ```
+&lt;br/&gt;&lt;br/&gt;
+2. Write a function that counts the number of
+   prime numbers less than or equal to a specified number.
+    
+    ```python
+    prime_count(k = 13)
+    ```
+    
+    ```
+    6
+    ```
+    
+    ```python
+    prime_count(k = 1000)
+    ```
+    
+    ```
+    168
+    ```
+
+---
+
+class: inverse, center, middle
+
+# Mutable versus immutable objects
+
+---
+
+## Object types
+
+- Immutable objects: int, float, long, complex, string tuple, bool
+
+- Mutable objects: list, dict, set, byte array, user-defined classes
+
+.small.pull-left[
+Copy made:
+
+```python
+x = (3, 5, 7)
+y = x
+
+id(x) == id(y)
+```
+
+```
+True
+```
+
+```python
+y = (1, 2, 3)
+print(id(x), id(y))
+```
+
+```
+4755296736 4755338736
+```
+
+```python
+print(x, y)
+```
+
+```
+(3, 5, 7) (1, 2, 3)
+```
+]
+
+.small.pull-right[
+No copy made:
+
+```python
+a = [1, 2, 3, 4]
+b = a
+
+id(a) == id(b)
+```
+
+```
+True
+```
+
+```python
+b.pop()
+```
+
+```
+4
+```
+
+```python
+print(id(a), id(b))
+```
+
+```
+4735853264 4735853264
+```
+
+```python
+print(a, b)
+```
+
+```
+[1, 2, 3] [1, 2, 3]
+```
+]
+
+---
+
+class: inverse, center, middle
+
+# Python libraries
+
+---
+
+## Libraries of interest
+
+- [NumPy](https://www.numpy.org/): package for scientific computing, handling
+  matrices, arrays, high level mathematical functions
+
+- [SciPy](https://scipy.org/scipylib/): optimization, numerical integration, 
+  linear algebra methods
+  
+- [pandas](https://pandas.pydata.org/): data wrangling and analysis (think 
+  R's `dplyr`)
+  
+- [matplotlib](https://matplotlib.org/index.html): 2D plotting library, generate
+  plots, histograms, power spectra, bar charts, errorcharts, scatterplots
+  
+- [seaborn](https://seaborn.pydata.org/): higher level plotting environment, 
+  based on matplotlib
+  
+- [scikit-learn](https://scikit-learn.org/stable/): go to for machine learning
+  in Python, built on NumPy, SciPy, and matplotlib
+
+---
+
+## Importing
+
+A module is a single importable Python file whereas a package is made up of 
+two or more modules. Both can be imported the same way with the keyword
+`import`.
+
+For example, `import math` imports the math module and provides access to
+its many functions.
+
+
+```python
+import math
+math.factorial(5)
+```
+
+```
+120
+```
+
+```python
+math.sqrt(100)
+```
+
+```
+10.0
+```
+
+```python
+math.log(1)
+```
+
+```
+0.0
+```
+
+
+---
+
+## Importing `from`
+
+If you don't want to import all the functions from a module, you can
+just import the ones you need with the keyword `from`.
+
+
+
+```python
+from math import factorial, sqrt, log
+factorial(5)
+```
+
+```
+120
+```
+
+```python
+sqrt(100)
+```
+
+```
+10.0
+```
+
+```python
+log(1)
+```
+
+```
+0.0
+```
+
+
+This technique eliminates the need to preface each function call with `math.`.
+
+---
+
+## Importing `from`
+
+You can import all functions from a given module by using the `*` operator.
+For example,
+
+
+```python
+from math import *
+```
+
+imports all the functions from the `math` module.
+
+However, this is a bad idea as you may have conflicts between your 
+object names and function names in the module.
+
+---
+
+## Importing `as`
+
+For brevity, people often give an alias to a package or module on import. This
+can be done with the keyword `as`. For example,
+
+
+```python
+import numpy as np
+import scipy.stats as st
+import matplotlib.pyplot as plt
+```
+
+Thus, rather than type `matplotlib.pyplot.hist()` a user can type `plt.hist()`. 
+There are common conventions for aliases so stick to using those.
+
+---
+
+## Example
+
+Import packages / modules:
+
+
+```python
+import numpy as np
+import scipy.stats as st
+import matplotlib.pyplot as plt
+```
+
+In Jupyter notebook you'll want to include the below line of code in a cell
+to allow for inline plotting.
+
+
+```python
+%matplotlib inline
+```
+
+---
+
+Let's plot a heatmap based on a 20 by 20 grid of random numbers.
+
+
+```python
+data = np.random.rand(20, 20)
+heat = plt.imshow(data)
+plt.show()
+```
+
+&lt;img src="02_python_files/figure-html/unnamed-chunk-59-1.png" width="480" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Example
+
+Create a histogram based off of 5000 randomly generated standard normal
+variables.
+
+
+```python
+norm_rv = st.norm.rvs(loc = 0,scale = 1, size = 5000)
+n, bins, patches = plt.hist(x = norm_rv, bins = 20, alpha = .5, color = "purple",
+          edgecolor = "black", linewidth = 1.2)
+plt.show()
+```
+
+&lt;img src="02_python_files/figure-html/unnamed-chunk-60-1.png" width="480" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Exercises
+
+1. Create a histogram based off of random variables generated from a probability
+   distribution of your choice.
+&lt;br/&gt;&lt;br/&gt;
+2. Plot 100 time steps of a simple symmetric random walk that starts at the 
+   value 0.
+
+
+
+---
+
+class: inverse, center, middle
+
+# Related resources
+
+---
+
+## Python programming resources
+
+- Style
+
+    - [PEP 8](https://www.python.org/dev/peps/pep-0008/): standard Python style
+    - [PEP 257](https://www.python.org/dev/peps/pep-0257/): documentation
+      conventions
+
+- Beginner
+
+   - [Python](https://www.python.org/): official documentation and tutorial
+   - [Jupyter](https://jupyter.org/): web notebook interface, reproducible 
+     research
+   - [A Byte of Python](https://python.swaroopch.com/)
+   - [Python Crash Course](https://ehmatthes.github.io/pcc/)
+   - [Python Crash Course - Cheat Sheets](https://ehmatthes.github.io/pcc/cheatsheets/README.html)
+
+- Advanced
+
+    - [Python Package Index](https://pypi.org)
+    - [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/runestone/books/published/pythonds/index.html)
+
+- Miscellaneous
+
+    - [Python 3 Module of the Week](https://pymotw.com/3/)
+
+---
+
+## References
+
+1. Introduction · GitBook. (2020). Retrieved from https://python.swaroopch.com/
+
+2. Project Jupyter. (2020). Retrieved from https://jupyter.org/
+
+3. Python Crash Course by ehmatthes. (2020). Retrieved from
+   https://ehmatthes.github.io/pcc/
+   
+4. Welcome to Python.org. (2020). Retrieved from https://www.python.org/
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

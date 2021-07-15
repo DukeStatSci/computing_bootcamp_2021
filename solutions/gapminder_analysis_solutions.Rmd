@@ -1,0 +1,138 @@
+---
+title: "Gapminder Data Analysis Solutions"
+author: ""
+date: ""
+output: html_document
+---
+
+```{r include=FALSE}
+# global chunk options
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      comment = "#>", highlight = TRUE, fig.align = "center")
+```
+
+## Load packages
+
+```{r packages}
+library(tidyverse)
+```
+
+## Load data
+
+```{r data_read}
+gap <- read_csv("https://bit.ly/gap_data")
+```
+
+## Exercises
+
+### Exercise 1
+
+Take a glimpse at the data set with function `glimpse()`.
+
+```{r glimpse}
+glimpse(gap)
+```
+
+How many variables and observations are in `gap`? What are the variable types
+for the variables in `gap`?
+
+Variable   | Type
+-----------|----------
+`country`  | character
+`continent`| character
+`year`     | double
+`lifeExp`  | double
+`pop`      | double
+`gdpPercap`| double
+
+### Exercise 2
+
+**Part 1**
+
+Create a scatter plot of life expectancy versus year for the United States.
+
+```{r ex2_part1, eval=FALSE}
+gap_usa <- gap %>% 
+  filter(country == "United States")
+
+ggplot(data = gap_usa, mapping = aes(x = year, y = lifeExp)) +
+  geom_point()
+```
+
+**Part 2**
+
+Create a plot of life expectancy verses GDP per capita for Canada. Set the
+color of the points to be red and connect them with a solid black line.
+
+```{r ex2_part2}
+gap_ca <- gap %>% 
+  filter(country == "Canada")
+
+ggplot(data = gap_ca, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(color = "red") +
+  geom_line()
+```
+
+**Part 3**
+
+Create a scatter plot of life expectancy versus GDP per capita based on all 
+countries in Africa in 1992. Set the color to be purple.
+
+```{r ex2_part3}
+gap_africa <- gap %>% 
+  filter(continent == "Africa", year == 1992)
+
+ggplot(data = gap_africa, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(color = "purple")
+```
+
+### Exercise 3
+
+**Part 1**
+
+Create a plot of life expectancy versus GDP per capita based on all the
+countries in Africa and Europe in 1992. Set the point colors to code for the
+two continents.
+
+*Hints*:
+
+1. Filter `gap` so it only contains observations from Africa or Europe.
+   Do this with `continent %in% c("Africa", "Europe")`. Also, filter so that
+   the observations are only from 1992. Separate multiple conditions with
+   commas.
+   
+2. Add another aesthetic to the plot. Instead of just `x` and `y`, include
+   `color = continent` inside function `aes()`. The color of the points will
+   be set for each level of the variable `continent`.
+
+```{r ex3_part1}
+gap_ae <- gap %>% 
+  filter(continent %in% c("Africa", "Europe"), year == 1992)
+
+ggplot(data = gap_ae, mapping = aes(x = lifeExp, 
+                                    y = gdpPercap, color = continent)) +
+  geom_point()
+```
+
+**Part 2**
+
+Create comparison boxplots by continent of GDP per capita for the year 2007.
+Fill the boxplots with color `darkgreen`.
+
+*Hints*:
+
+1. Filter `gap` so it only contains observations from 2007.
+
+2. Inside `aes()` set `x = continent, y = gdpPercap`.
+
+3. Use `geom_boxplot()` and set the fill to `darkgreen`.
+
+```{r ex3_part2}
+gap_cont <- gap %>% 
+  filter(year == 2007)
+
+ggplot(data = gap_cont, mapping = aes(x = continent, y = gdpPercap)) +
+  geom_boxplot(fill = "darkgreen")
+```
+
+
