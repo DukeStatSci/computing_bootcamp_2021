@@ -1,14 +1,15 @@
 ---
 title: "Introduction & Computing Resources"
 subtitle: "2020 DSS Bootcamp"
-author: "Shawn Santo"
+author: "Colin Rundel"
 institute: ""
-date: "08-03-20"
+date: "08-02-21"
 output:
   xaringan::moon_reader:
     css: "css/slides.css"
     lib_dir: libs
     nature:
+      ratio: '16:9'
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -21,14 +22,6 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
                       comment = "#>", highlight = TRUE,
                       fig.align = "center")
 ```
-
-## Supplementary materials
-
-Companion videos
-
-1. [Computing resources](https://warpwire.duke.edu/w/5f8DAA/)
-
----
 
 ## Welcome
 
@@ -66,7 +59,7 @@ https://idms-web.oit.duke.edu/portal/:
   
   - Changing your challenge questions
   
-  - Setting up multi-factor authentication
+  - Setup multi-factor authentication (Duo recommended)
 
 ---
 
@@ -151,10 +144,10 @@ Duke network connections:
 
 - Some free software relevant to you as students: 
 
+  - Cisco VPN Client
   - Microsoft Office
   - MATLAB & Simulink
   - SAS Education Analytical Suite
-  - VPN Client
   - Mathematica
   - Tableau
   - Adobe Creative Cloud
@@ -176,7 +169,7 @@ Duke OIT offers virtual software containers and semester-long virtual machines.
     - `Jupyter - interactive data science and scientific computing notebooks`
 
 - [Virtual Machine (VM)](https://vcm.duke.edu/) – Your Duke VM is like having a 
-  second computer that lives with Duke. You can log into and use your VM 
+  second computer that lives at Duke. You can log into and use your VM 
   from your own machine. It allows you to access specialized software without 
   installing it on your own computer, host your own server for development 
   projects and coursework, or customize your own environment to use for the 
@@ -201,6 +194,8 @@ research. You will need to be granted access before use.
 
 - Uses the SLURM job management system
 
+- Requires sponsorship by a faculty member to use
+
 The [DCC User Guide](https://rc.duke.edu/dcc/dcc-user-guide/) will help you
 get up and running. They also host workshops to help new users.
 
@@ -218,6 +213,8 @@ infrastructure and application support.
 
 - Walk up hours are available at the [Link](https://link.duke.edu/about-link) in 
   [Perkins Library](http://www.google.com/maps?q=William+R.+Perkins+Library,+Durham,+NC&hl=en&sll=36.001827,-78.884911&sspn=0.486055,0.681839&oq=perkins+&hq=William+R.+Perkins+Library,+Durham,+NC&t=m&z=15).
+  
+- Live service status dashboard available at https://status.oit.duke.edu/
 
 ---
 
@@ -229,9 +226,7 @@ class: inverse, middle center
 
 ## RStudio Pro
 
-The DSS has an RStudio Pro license that will allow you to run an instance of
-RStudio in your browser while harnessing the computing power of a remote
-multiprocessor server.
+The DSS has an RStudio Workbench (formerly Pro) license that will allow you to connect to an instance of RStudio in your browser while harnessing the computing power of a remote multiprocessor server.
 
 To access RStudio Pro:
 
@@ -239,16 +234,11 @@ To access RStudio Pro:
    to Duke. If you are on campus, be sure you are connected to the Dukeblue
    network.
 
-2. Navigate to one of
+2. Navigate to:
 
-    - http://pawn.stat.duke.edu:8787
-    - http://rook.stat.duke.edu:8787 (MS students)
-    - http://knight.stat.duke.edu:8787 (PhD students)
-    
-    <i>You'll have access to all three, but we try to spread things out to 
-    prevent overload.</i>
+    - http://rstudio.stat.duke.edu:8787
 
-3. Log-in with your Duke NetID and password.
+3. Log-in with your NetID and password.
 
 ---
 
@@ -257,10 +247,10 @@ To access RStudio Pro:
 - Local file system on DSS servers
 
   - Connect via SSH to 
+      - rstudio.stat.duke.edu
       - pawn.stat.duke.edu
       - rook.stat.duke.edu
       - knight.stat.duke.edu
-      - monster.stat.duke.edu
     
 - RStudio Connect
 
@@ -269,11 +259,11 @@ To access RStudio Pro:
   - share Shiny applications, R Markdown reports, Plumber APIs, dashboards, 
     Jupyter Notebooks, interactive Python content, and more
     
-  - if you need access, ask and I can help get you set-up
+  - if you need access, ask and we can help get you set-up
 
 - Email aliases: https://stat.duke.edu/resources/email/aliases
   
-- Archived resources page: https://stat.duke.edu/resources/
+- Departmental IT resources page is coming soon
 
 ---
 
@@ -287,14 +277,12 @@ members will get back with you ASAP.
 
   - Phone: 919-684-5419
   - Location: 027 Old Chemistry
-  - Office Hours: TBD
 
 [Frisco Rose](https://stat.duke.edu/people/francis-rose-0) - Assistant Research 
 Professor in the Department of Mechanical Engineering and Materials Science
 
   - Phone: 919-660-5496
   - Location: 026 Old Chem
-  - Office Hours: TBD
 
 ---
 
