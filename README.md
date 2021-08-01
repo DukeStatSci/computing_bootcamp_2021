@@ -1,35 +1,13 @@
-# Duke University :: Department of Statistical Science Computing Bootcamp 2020
+# Duke University :: Department of Statistical Science Computing Bootcamp 2021
 
 This repository contains the computing bootcamp materials for incoming
 Ph.D. and M.S. students to the Department of Statistical Science at
-Duke University. These materials are adapted from those developed by
-Mine Çetinkaya-Rundel and Colin Rundel for the
-[2018 computing bootcamp](https://github.com/DukeStatSci/computing-bootcamp-2018).
+Duke University. These materials are adapted from those developed by Shawn Santo,
+Mine Çetinkaya-Rundel and Colin Rundel.
 
 ## Getting started
 
-#### Access materials
 
-To get access to the materials, click the green `Code` button, and download a
-zip file of this repository. In the version control video and slides
-we'll go through the steps of forking and cloning this repository.
-
-#### Contents
-
-In `slides/` you'll find three HTML/PDF slides on the topics below.
-1. `00_introduction_and_resources.html` / `00_introduction_and_resources.pdf`
-2. `01_r_version_control.html` / `01_r_version_control.pdf`
-3. `02_python.html` / `02_python.pdf`
-
-In `exercises/` you'll find one `Rmd` (R Markdown) file and two `ipynb`
-(python notebook) files.
-
-At the start of each slide deck are links to companion videos hosted through
-Duke's Warpwire platform. The videos serve as supplementary material to the
-contents in the slides. It is recommended that you work through the slides
-and corresponding videos in the order presented above.
-
-*Solutions to exercises will be added to this repository later in the bootcamp.*
 
 ## Computing resources
 
