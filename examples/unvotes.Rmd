@@ -17,7 +17,6 @@ We will use the **tidyverse**, **lubridate**, and **scales** packages for data w
 library(tidyverse)
 library(lubridate)
 library(scales)
-library(DT)
 library(unvotes)
 ```
 
@@ -73,14 +72,3 @@ unvotes %>%
 2.  Erik Voeten "Data and Analyses of Voting in the UN General Assembly" Routledge Handbook of International Organization, edited by Bob Reinalda (published May 27, 2013).
 3.  Much of the analysis has been modeled on the examples presented in the [unvotes package vignette](https://cran.r-project.org/web/packages/unvotes/vignettes/unvotes.html).
 
-## Appendix
-
-Below is a list of countries in the dataset:
-
-```{r list-countries, echo=FALSE}
-unvotes %>% 
-  select(country) %>%
-  arrange(country) %>% 
-  distinct() %>%
-  datatable()
-```
