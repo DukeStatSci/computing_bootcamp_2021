@@ -16,6 +16,7 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
+exclude: true
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
@@ -63,7 +64,7 @@ A few suggestions on picking a GitHub username:
 
 ---
 
-## Accessing RStudio Pro
+## Accessing RStudio Workbench
 
 To get started as quickly as possible, the preferred method is to use 
 DSS RStudio server(s). To access RStudio Workbench:
@@ -101,8 +102,9 @@ If you cannot access RStudio via the DSS servers:
 
 ## Bootcamp materials
 
-- Everything from this computing bootcamp is available on GitHub at 
-  https://github.com/dukestatsci/computing_bootcamp_2021. 
+- Everything from this computing bootcamp is available at https://dukestatsci.github.io/computing_bootcamp_2021/
+
+- GitHub repo is available at https://github.com/dukestatsci/computing_bootcamp_2021. 
 
 - You'll learn how to get this on your computer shortly.
 
@@ -118,7 +120,7 @@ class: inverse, center, middle
 
 .pull-left[
 
-- Simple formal system for tracking all changes to a project
+- Simple formal system for tracking changes to a project over time
 
 - Time machine for your projects
     + Track blame and/or praise
@@ -438,7 +440,7 @@ associated with current depression [...].
 
 ---
 
-## Reproducibility: why should we care?
+## Teaching Reproducibility
 
 1. Convince researchers to adopt a reproducible research workflow.
 
@@ -651,59 +653,12 @@ To get started,
 - commit and push your changes to GitHub (include the newly generated `unvotes.html` file as well)
 <br/>
 
----
-
-## Reproducible?
-
-Is your work reproducible? Are you able to easily redo your analysis with 
-updated data?
-
-
-<br/><br/>
-
---
-
-**Did you remember to commit and push your work to GitHub?**
-
----
-
-## Workflow
-
-.center.middle[
-![](images/data-science.png)
-]
-
-<br><br><br><br><br>
-
-*Source*: Grolemund and Wickham, R for Data Science, http://r4ds.had.co.nz/
-
----
-
-class: inverse, center, middle
-
-# Suggestions and tips
-
----
-
-## Organizing a more complex analysis
-
-- Use folders: raw_data, processed_data, code, figures, etc.
-
-- Number your script files:
-    - `00_load_data.R`
-    - `01_data_cleanup.R`
-    - `02_eda.R`
-    - ...
-
-- Use informative names that indicate versioning
-    - use dates
-    - avoid things like `project_fin`, `project_finalfinal`, etc.
 
 ---
 
 ## R Markdown suggestions
 
-- Always name your code chunks
+- Remember to name your code chunks
 
 - Familiarize yourself with chunk options (https://yihui.org/knitr/options/)
     - Use global chunk options to reduce duplication
