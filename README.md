@@ -7,10 +7,10 @@ Mine Çetinkaya-Rundel and Colin Rundel.
 
 ## Content
 
-Section      | Topic   | Video | Slides |
--------------|---------|:-----:|:------:|
-Introduction | Welcome                         | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=0s)    | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#1) |
-             | Duke Computing resources        | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=155s)  | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#3) |
+Section      | Topic                           | Video | Slides |
+-------------|---------------------------------|:-----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|
+Introduction | Welcome                         | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=0s)    | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#1)  |
+             | Duke Computing resources        | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=155s)  | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#3)  |
              | OIT help                        | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=1122s) | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#12) |
              | Department Computing resources  | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=1220s) | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#13) |
              | Depertment IT help              | [:clapper:](https://www.youtube.com/watch?v=dCTmeGGlsR4&t=1423s) | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/00_introduction_and_resources.html#16) |
