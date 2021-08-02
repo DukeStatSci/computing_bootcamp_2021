@@ -8,5 +8,5 @@ Mine Çetinkaya-Rundel and Colin Rundel.
 ## Content
 
 Section      | Topic   | Video | Slides |
--------------|---------|-------|--------|
+-------------|---------|:-----:|:------:|
 Introduction | Welcome | :clapper: | :desktop_computer: |
