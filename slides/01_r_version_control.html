@@ -3,7 +3,8 @@
   <head>
     <title>R and Version Control</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Shawn Santo" />
+    <meta name="author" content="Colin Rundel" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
     <link rel="stylesheet" href="css/slides.css" type="text/css" />
   </head>
   <body>
@@ -11,21 +12,14 @@
 class: center, middle, inverse, title-slide
 
 # R and Version Control
-## 2020 DSS Bootcamp
-### Shawn Santo
-### 08-03-20
+## 2021 DSS Bootcamp
+### Colin Rundel
+### 08-02-21
 
 ---
 
 
 
-
-## Supplementary materials
-
-Companion videos
-
-1. [Version control](https://warpwire.duke.edu/w/cQAEAA/)
-2. [R / RStudio and reproducible research](https://warpwire.duke.edu/w/UwEEAA/)
 
 ---
 
@@ -41,8 +35,11 @@ To get everyone on the same page:
 
 - If you don't have one, sign up for a GitHub account (it takes 1 min.)
     - Go to https://github.com/join
-    - Enter your information
-    - Pick the `Unlimited public repositories for free.` plan
+    - Enter your information (username, email address and a password).
+    
+---
+
+## Account names
     
 A few suggestions on picking a GitHub username:
 
@@ -66,16 +63,14 @@ A few suggestions on picking a GitHub username:
 ## Accessing RStudio Pro
 
 To get started as quickly as possible, the preferred method is to use 
-DSS RStudio servers. To access RStudio Pro:
+DSS RStudio server(s). To access RStudio Workbench:
 
 1. If off campus, use the VPN to create a secure connection from your computer 
    to Duke. If you are on campus, be sure you are connected to the Dukeblue
    network.
 
-2. Navigate to one of
-    - http://pawn.stat.duke.edu:8787
-    - http://rook.stat.duke.edu:8787 (MS students)
-    - http://knight.stat.duke.edu:8787 (PhD students)
+2. Navigate to
+    - http://rstudio.stat.duke.edu:8787
     
 3. Log-in with your Duke NetID and password.
 
@@ -83,16 +78,14 @@ If you are having trouble accessing RStudio Pro see the next slide.
 
 ---
 
-## DSS RStudio Pro alternatives
+## DSS RStudio alternatives
 
-If you cannot access RStudio Pro via DSS servers:
+If you cannot access RStudio via the DSS servers:
 
-
-- Use R and RStudio locally on your computer
+- Install R and RStudio locally on your computer
 
     - Download R on your computer [here](http://archive.linux.duke.edu/cran/)
     - Download RStudio [here](https://www.rstudio.com/products/rstudio/download/)
-
 
 - Use a docker container from Duke OIT
 
@@ -105,8 +98,8 @@ If you cannot access RStudio Pro via DSS servers:
 
 ## Bootcamp materials
 
-- Everything from this computing bootcamp is available on my GitHub account at 
-  https://github.com/shawnsanto/computing_bootcamp_2020. 
+- Everything from this computing bootcamp is available on GitHub at 
+  https://github.com/dukestatsci/computing_bootcamp_2021. 
 
 - You'll learn how to get this on your computer shortly.
 
@@ -128,7 +121,7 @@ class: inverse, center, middle
     + Track blame and/or praise
     + Remove the fear of breaking things
 
-- Learning curve is steep, but when you need it you *REALLY* need it
+- Learning curve can be a bit steep, but when you need it you *REALLY* need it
 
 ]
 
@@ -162,7 +155,7 @@ class: inverse, center, middle
 
 .pull-right[
 
-![](images/distributed-vc-system.png)
+&lt;img src="images/distributed-vc-system.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -175,26 +168,134 @@ can verify this by
 
 
 ```bash
-[sms185@numeric1 ~]$ git --version
+[cr173@numeric1 ~]$ git --version
 git version 2.20.1
 ```
 
 
 ```bash
-[sms185@numeric1 ~]$ which git
+[cr173@numeric1 ~]$ which git
 /usr/bin/git
 ```
 
 &lt;br&gt;
 
-To install git and connect git, GitHub and RStudio on your own computer 
-follow the directions in [Happy Git and GitHub for the useR](https://happygitwithr.com/).
+To install git on your own computer follow the directions in [Happy Git and GitHub for the useR](https://happygitwithr.com/install-git.html).
+
+---
+
+## Git sitrep
+
+```r
+usethis::git_sitrep()
+## Git config (global)
+## ● Name: &lt;unset&gt;
+## ● Email: &lt;unset&gt;
+## ● Vaccinated: FALSE
+## ℹ See `?git_vaccinate` to learn more
+## ℹ Defaulting to https Git protocol
+## ● Default Git protocol: 'https'
+## GitHub
+## ● Default GitHub host: 'https://github.com'
+## ● Personal access token for 'https://github.com': &lt;unset&gt;
+## x Call `gh_token_help()` for help configuring a token
+## Git repo for current project
+## ℹ No active usethis project
+```
+
 
 ---
 
 class: inverse, center, middle
 
 # git and GitHub live demo
+
+
+---
+
+## Configure git
+
+The following will tell git who you are, and other common configuration tasks.
+
+```r
+usethis::use_git_config(
+  user.name = "Colin Rundel",
+  user.email = "rundel@gmail.com",
+  push.default = "simple"
+)
+```
+
+You will need to do this configuration once on each machine in which you choose 
+to use git.
+
+This can also be done via the terminal with,
+
+
+
+```bash
+$ git config --global user.name "Colin Rundel"
+$ git config --global user.email "rundel@gmail.com"
+$ git config --global push.default simple
+```
+
+---
+
+## Configure git verification
+
+To verify you configured git correctly, run
+
+```r
+usethis::git_sitrep()
+## Git config (global)
+## ● Name: 'Colin Rundel'
+## ● Email: 'rundel@gmail.com'
+## ● Vaccinated: FALSE
+## ℹ See `?git_vaccinate` to learn more
+## ● Default Git protocol: 'https'
+## GitHub
+## ● Default GitHub host: 'https://github.com'
+## ● Personal access token for 'https://github.com': &lt;unset&gt;
+## x Call `gh_token_help()` for help configuring a token
+## Git repo for current project
+## ℹ No active usethis project
+```
+
+You should see output similar to above.
+
+---
+
+## Configure SSH and GitHub (authentication)
+
+We will be authenticating with GitHub using SSH based public / private keys. We can create a new key pair (if necessary) by running the following in RStudio's *console*:
+
+
+```r
+credentials::ssh_setup_github()
+```
+
+--
+
+
+```r
+## No SSH key found. Generate one now? 
+## 
+## 1: Yes
+## 2: No
+## 
+## Selection: 1
+## Generating new RSA keyspair at: /home/guest/.ssh/id_rsa
+## Your public key:
+## 
+*##  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/wH7pT3UXdOMJSX2wMaPVTyGnYkS8OPmcfjct6h8Q+44/9UG3sOibjjUCxIxVeCWAoYFB0rDI3/Ljf2EWozLlpeGzAe7xsg6A+MHtUObZnfzXSB/NnOhZymD2u8Nh+py07aojVdKAPBkRH3nHA+rljidc3gXZkqseetYEI1N79OQUshp2P+Qm6Vab4I5OCnfAwLFkR7Sw7J9hvZN1qUmM0DB0WTWSlNmPSMsASMe/6Nz30IRoBh35Z7tgF79rlIW385giCkEeD20Le9EOueGoTWarJWylE1RWnUyig2mZ9JK/rYTw4KBXacPhBwn+MgGC+r8xY5IEX78xkeXW9q2z
+## 
+## Please copy the line above to GitHub: https://github.com/settings/ssh/new
+## Would you like to open a browser now? 
+## 
+## 1: Yes
+## 2: No
+## 
+## Selection: 1
+```
 
 ---
 
@@ -205,11 +306,11 @@ steps below will give you access.
 
 1. Log in to GitHub
 
-2. Navigate to https://github.com/shawnsanto/computing_bootcamp_2020
+2. Navigate to https://github.com/dukestatsci/computing_bootcamp_2021
 
 3. Fork the repository
 
-4. Copy the link under `Clone or Download` to clone with HTTPS
+4. Copy the link under `Clone or Download` to clone with *SSH*.
 
 5. In RStudio go to `File &gt; New Project &gt; Version Control &gt; Git`
 
@@ -218,81 +319,6 @@ steps below will give you access.
 You now should have all the files in the repository in a directory on the
 server or your own computer.
 
----
-
-## Configure git
-
-The following will tell git who you are, what editor you want to use, and
-to store your username and password.
-
-
-```bash
-$ git config --global user.name "Shawn Santo"
-$ git config --global user.email "shawn.santo@duke.edu"
-$ git config --global push.default simple
-$ git config --global core.editor [editor-of-choice]
-$ git config --global credential.helper 'cache --timeout=600000'
-```
-
-*On DSS my editor of choice is vim; on my own computer my editor of choice is*
-*Sublime Text 3.*
-
-You will need to do this configuration on each machine in which you choose 
-to use git.
-
-For windows users, the last line should be
-
-
-```bash
-$ git config --global credential.helper wincred
-```
-
----
-
-## Configure git verification
-
-To verify you configured git correctly, run
-
-
-```bash
-*[sms185@numeric1 ~]$ git config --global -l
-user.name=Shawn Santo
-user.email=shawn.santo@duke.edu
-core.editor=vim
-push.default=simple
-credential.helper=cache --timeout=600000
-```
-
-You should see output similar to above.
-
---
-
-.small-text[
-Using command `git config --global -l` on Windows:
-
-
-```bash
-user.name=Shawn Santo
-user.email=shawn.santo@duke.edu
-core.editor='c:/program files/sublime text 3/sublime_text.exe' -w
-credential.helper=wincred
-push.default=simple
-```
-]
-
-.small-text[
-Using command `git config --global -l` on Mac:
-
-
-```bash
-credential.helper=osxkeychain
-user.name=Shawn Santo
-user.email=shawn.santo@duke.edu
-core.editor=/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w
-push.default=simple
-credential.helper=cache --timeout=600000
-```
-]
 
 ---
 
@@ -472,19 +498,23 @@ inseparable,
 
 ---
 
-## Toolkit
+## Toolkits
 
-![](images/toolkit.png)
+&lt;img src="images/rmarkdown_logo.png" width="20%" style="display: block; margin: auto;" /&gt;&lt;img src="images/jupyter.png" width="20%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
 ## Reproducible data analysis
 
-- Scriptability `\(\rightarrow\)` R
+- Scriptability `\(\rightarrow\)` R *or* Python
 
-- Literate programming `\(\rightarrow\)` R Markdown
+- Literate programming `\(\rightarrow\)` R Markdown *or* Jupyter Notebooks
 
 - Version control `\(\rightarrow\)` git / GitHub
+
+    
+--
 
 &lt;br&gt;&lt;br&gt;
 
@@ -494,7 +524,7 @@ Could these tools have prevented some of the aforementioned retractions?
 
 ## What is markdown?
 
-- Markdown is a lightweight markup language for creating HTML (or XHTML) 
+- Markdown is a lightweight markup language for creating HTML (and other formatted) 
 documents.
 
 - Markup languages are designed to produce documents from human readable 
@@ -507,8 +537,10 @@ friendly) markup language for creating pdf documents.
 
   - Easy to learn and use.
   - Focus on **content**, rather than **coding** and debugging **errors**.
-  - Once you have the basics down, you can get fancy and add HTML, JavaScript, 
+  - Once you have the basics down, you can get fancy via HTML, JavaScript, 
     and CSS.
+  - Used by both RMarkdown and Jupyter Notebooks  
+  
     
 &lt;br/&gt;
 
@@ -562,17 +594,7 @@ statistical analysis.
 
 class: inverse, center, middle
 
-# R / RStudio
-
----
-
-## R / RStudio
-
-- Rather than use the R graphical user interface we will use RStudio. 
-
-
-- RStudio is a free and open-source integrated development environment (IDE) 
-  for R.
+# RMarkdown demo
 
 ---
 
@@ -602,277 +624,38 @@ You only need to install a package once, but you must load it with function
 
 ---
 
-## A note on workspaces
+## A note on environments
 
-- Your R Markdown document and your Console do not share workspaces.
+- Your R Markdown document and your Console do not share their global environments.
 
 - This is good for reproducibility, but can sometimes result in frustrating 
   errors.
 
-- This also means any packages needed for your analysis need to be loaded in 
+- This also means any packages or data needed for your analysis need to be loaded in 
   your R Markdown document as well.
 
 ---
 
-## Gapminder data analysis
+## Unvotes data analysis
 
 To get started,
 
-- open `gapminder_analysis.Rmd`,
+- open `examples/unvotes.Rmd`,
 
-- run the code chunk to load `tidyverse` (install it, if needed)
+- try knitting the entire document and examine the results.
 
+- try changing one or more of the selected countries, re-knit the document and observe any changes.
   
-  ```r
-  library(tidyverse)
-  ```
-
-- run the code chunk to read in the data and store it as an object named `gap`.
-
-  
-  ```r
-  gap &lt;- read_csv("https://bit.ly/gap_data")
-  ```
-  
+- commit and push your changes to GitHub (include the newly generated `unvotes.html` file as well)
 &lt;br/&gt;
-
---
-
-Function `read_csv()` is part of package `readr`, which is automatically loaded
-from package `tidyverse`. Function `read_csv()` not only reads in the data, but
-it ensures object `gap` is a neatly formatted data frame - known as a tibble.
-
----
-
-## Examine `gap`
-
-Let's look at the first 10 rows of `gap`.
-
-
-```r
-gap %&gt;%
-  slice(1:10)
-```
-
-```
-#&gt; # A tibble: 10 x 6
-#&gt;    country             continent  year lifeExp       pop gdpPercap
-#&gt;    &lt;chr&gt;               &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-#&gt;  1 United Kingdom      Europe     1967    71.4  54959000    14143.
-#&gt;  2 Eritrea             Africa     2007    58.0   4906585      641.
-#&gt;  3 Trinidad and Tobago Americas   1997    69.5   1138101     8793.
-#&gt;  4 Taiwan              Asia       2002    77.0  22454239    23235.
-#&gt;  5 Kuwait              Asia       2007    77.6   2505559    47307.
-#&gt;  6 Brazil              Americas   1987    65.2 142938076     7807.
-#&gt;  7 Cameroon            Africa     1957    40.4   5359923     1313.
-#&gt;  8 Hungary             Europe     1982    69.4  10705535    12546.
-#&gt;  9 Iceland             Europe     1952    72.5    147962     7268.
-#&gt; 10 Turkey              Europe     1952    43.6  22235677     1969.
-```
-
----
-
-## Tidy data
-
-![](images/tidy-data.png)
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-*Source*: Grolemund and Wickham, R for Data Science, http://r4ds.had.co.nz/
-
----
-
-## Exercise 1
-
-Take a glimpse at the data set with function `glimpse()`.
-
-
-```r
-glimpse(gap)
-```
-
-```
-#&gt; Rows: 1,363
-#&gt; Columns: 6
-#&gt; $ country   &lt;chr&gt; "United Kingdom", "Eritrea", "Trinidad and Tobago", "Taiwan…
-#&gt; $ continent &lt;chr&gt; "Europe", "Africa", "Americas", "Asia", "Asia", "Americas",…
-#&gt; $ year      &lt;dbl&gt; 1967, 2007, 1997, 2002, 2007, 1987, 1957, 1982, 1952, 1952,…
-#&gt; $ lifeExp   &lt;dbl&gt; 71.360, 58.040, 69.465, 76.990, 77.588, 65.205, 40.428, 69.…
-#&gt; $ pop       &lt;dbl&gt; 54959000, 4906585, 1138101, 22454239, 2505559, 142938076, 5…
-#&gt; $ gdpPercap &lt;dbl&gt; 14142.8509, 641.3695, 8792.5731, 23235.4233, 47306.9898, 78…
-```
-
----
-
-How many variables and observations are in `gap`? What are the variable types
-for the variables in `gap`?
-
-&lt;br/&gt;
-
---
-
-Variable   | Type
------------|----------
-`country`  | character
-`continent`| character
-`year`     | double
-`lifeExp`  | double
-`pop`      | double
-`gdpPercap`| double
-
----
-
-## Exercise 2
-
-**Part 1**
-
-Create a scatter plot of life expectancy versus year for the United States.
-
-
-```r
-gap_usa &lt;- gap %&gt;% 
-  filter(country == "United States")
-
-ggplot(data = gap_usa, mapping = aes(x = year, y = lifeExp)) +
-  geom_point()
-```
-
----
-
-## Exercise 2
-
-**Part 1**
-
-Create a scatter plot of life expectancy versus year for the United States.
-
-&lt;img src="01_r_version_control_files/figure-html/usa-plot-1.png" style="display: block; margin: auto;" /&gt;
-
-Think about the connection between the code and the plot.
-
----
-
-## Exercise 2
-
-**Part 2**
-
-Create a plot of life expectancy verses GDP per capita for Canada. Set the
-color of the points to be red and connect them with a solid black line.
-
-&lt;img src="01_r_version_control_files/figure-html/canada-plot-1.png" style="display: block; margin: auto;" /&gt;
-
-???
-
-**Part 2 Solution**
-
-
-```r
-gap_ca &lt;- gap %&gt;% 
-  filter(country == "Canada")
-
-ggplot(data = gap_ca, mapping = aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(color = "red") +
-  geom_line()
-```
-
----
-
-## Exercise 2
-
-**Part 3**
-
-Create a scatter plot of life expectancy versus GDP per capita based on all 
-countries in Africa in 1992. Set the color to be purple.
-
-&lt;img src="01_r_version_control_files/figure-html/africa-plot-1.png" style="display: block; margin: auto;" /&gt;
-
-???
-
-**Part 3 Solution**
-
-
-```r
-gap_africa &lt;- gap %&gt;% 
-  filter(continent == "Africa", year == 1992)
-
-ggplot(data = gap_africa, mapping = aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(color = "purple")
-```
-
----
-
-## Exercise 3
-
-**Part 1**
-
-Create a plot of life expectancy versus GDP per capita based on all the
-countries in Africa and Europe in 1992. Set the point colors to code for the
-two continents.
-
-*Hints*:
-
-1. Filter `gap` so it only contains observations from Africa or Europe.
-   Do this with `continent %in% c("Africa", "Europe")`. Also, filter so that
-   the observations are only from 1992. Separate multiple conditions with
-   commas.
-   
-2. Add another aesthetic to the plot. Instead of just `x` and `y`, include
-   `color = continent` inside function `aes()`. The color of the points will
-   be set for each level of the variable `continent`.
-   
-???
-
-**Part 1 Solution**
-
-
-```r
-gap_ae &lt;- gap %&gt;% 
-  filter(continent %in% c("Africa", "Europe"), year == 1992)
-
-ggplot(data = gap_ae, mapping = aes(x = lifeExp, y = gdpPercap, color = continent)) +
-  geom_point()
-```
-
----
-
-## Exercise 3
-
-**Part 2**
-
-Create comparison boxplots by continent of GDP per capita for the year 2007.
-Fill the boxplots with color `darkgreen`.
-
-*Hints*:
-
-1. Filter `gap` so it only contains observations from 2007.
-
-2. Inside `aes()` set `x = continent, y = gdpPercap`.
-
-3. Use `geom_boxplot()` and set the fill to `darkgreen`.
-
-???
-
-**Part 2 Solution**
-
-
-```r
-gap_cont &lt;- gap %&gt;% 
-  filter(year == 2007)
-
-ggplot(data = gap_cont, mapping = aes(x = continent, y = gdpPercap)) +
-  geom_boxplot(fill = "darkgreen")
-```
 
 ---
 
 ## Reproducible?
 
-Is your work reproducible? Are you able to easily redo your analysis with the 
-newly updated data?
+Is your work reproducible? Are you able to easily redo your analysis with 
+updated data?
 
-
-```r
-gap_upd &lt;- read_csv("https://bit.ly/gap_data_upd")
-```
 
 &lt;br/&gt;&lt;br/&gt;
 
@@ -920,7 +703,7 @@ class: inverse, center, middle
 
 - Always name your code chunks
 
-- Familiarize yourself with chunk options
+- Familiarize yourself with chunk options (https://yihui.org/knitr/options/)
     - Use global chunk options to reduce duplication
 
 - Load packages at the start of a document, generally the chunk after your
@@ -933,30 +716,6 @@ class: inverse, center, middle
 &lt;br/&gt;&lt;br/&gt;
 
 These slides were made with R Markdown and `xaringan`.
-
----
-
-## Projects
-
-Always use them. It will make your life easier.
-
----
-
-## Configuration
-
-- Panes
-
-- View in pane for Rmd
-
-- Themes
-
-- Fonts
-
----
-
-class: inverse, center, middle
-
-# Related resources
 
 ---
 
@@ -975,7 +734,7 @@ class: inverse, center, middle
       Garret Grolemund
     - [R Cookbook](https://www.amazon.com/gp/product/0596809158/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596809158&amp;linkCode=as2&amp;tag=cooforr09-20) by Paul Teetor
 
-- Advanced
+- Next steps
 
     - [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
     - [R Packages](http://r-pkgs.had.co.nz/) by Hadley Wickham
@@ -1000,6 +759,116 @@ class: inverse, center, middle
     
 Some of the above cheat sheets are available in RStudio: `Help &gt; Cheatsheets`
 
+
+
+
+---
+
+class: inverse, center, middle
+
+# Jupyter notebook demo
+
+
+---
+
+## KDnuggets poll
+
+.center.middle[
+
+![](images/kd_nuggets.png)
+
+]
+
+*Source*: https://www.kdnuggets.com/2020/06/data-science-tools-popularity-animated.html
+
+---
+
+## Stack Overflow trends
+
+To see how technologies have trended over time based on use of their 
+tags since 2008 we can look at Stack Overflow trends.
+
+
+&lt;img src="images/stack_overflow.png" width="66%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## RStudio Workbench + Jupyter
+
+If you return to http://rstudio.stat.duke.edu:8787 you can launch a new session and select Jupyter Lab as your editor of choice.
+
+&lt;br/&gt;&lt;br/&gt;
+
+&lt;img src="images/workbench_jupyter.png" width="66%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Overview of the notebook
+
+Bimodal interface: edit mode and command mode
+
+&lt;br&gt;
+
+Click in a cell or hit `enter` to enter edit mode
+.center[
+![](images/edit-mode.png)
+]
+
+When in edit mode you can type code or write text with markdown.
+
+&lt;br&gt;
+
+Hit `esc` to enter command mode
+.center[
+![](images/command_mode.png)
+]
+
+When in command mode you can make edits to the notebook, but not individual
+cells.
+
+---
+
+## Notebook shortcuts
+
+In **edit** mode:
+
+- Run cell and add new cell: `shift + enter`
+- Add a line within a cell: `enter`
+
+--
+
+In **command** mode:
+
+- Save the notebook: `s`
+- Change cell to markdown: `m`
+- Change cell to code: `y`
+- Cut, copy, paste, delete a cell: `x`, `c`, `v`, `d`
+- Add a cell above, below: `a`, `b`
+
+&lt;br&gt;&lt;br&gt;
+
+The point-and-click interface is also an option to execute these commands.
+
+---
+
+## Jupyter notebook versus R Markdown
+
+- Similar to R Markdown, Jupyter notebooks allow you to write code and text in
+  one easy to read document that is reproducible and easy to share with others.
+
+- A Jupyter notebook does not knit to an HTML, PDF or Word file. However, you
+  can embed HTML into a notebook.
+
+- For a more detailed comparison see 
+  [The First Notebook War](https://yihui.name/en/2018/09/notebook-war/).
+
+---
+
+
+
+
 ---
 
 ## References
@@ -1015,10 +884,19 @@ Some of the above cheat sheets are available in RStudio: `Help &gt; Cheatsheets`
 4. Retraction Watch. (2020). Retrieved from https://retractionwatch.com/
 
 5. R Markdown. (2020). Retrieved from https://rmarkdown.rstudio.com/index.html
+
+
+
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
+"ratio": "16:9",
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false
