@@ -30,6 +30,8 @@ Mine Çetinkaya-Rundel and Colin Rundel.
 | &nbsp;       | Rmarkdown demo                  | [:clapper:](https://www.youtube.com/watch?v=CRv2CKz3SGc&t=1392s) | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#37)  |         
 | &nbsp;       | Rmarkdown + git / GitHub        | [:clapper:](https://www.youtube.com/watch?v=CRv2CKz3SGc&t=2099s) | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#37)  |                   
 | &nbsp;       | Demo wrap up                    | [:clapper:](https://www.youtube.com/watch?v=CRv2CKz3SGc&t=2303s) | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#38)  |       
-
-
-| Jupyter      | Introduction                   | [:clapper:]()    | [:desktop_computer:]()  |
+| Jupyter      | Python intro                    | [:clapper:](https://www.youtube.com/watch?v=dZnTDrRqeJY&t=0s)    | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#45)  |        
+| &nbsp;       | Launching Jupyter Lab           | [:clapper:](https://www.youtube.com/watch?v=dZnTDrRqeJY&t=132s)  | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#47)  |                 
+| &nbsp;       | Jupyter demo                    | [:clapper:](https://www.youtube.com/watch?v=dZnTDrRqeJY&t=218s)  | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#47)  |        
+| &nbsp;       | Jupyter + git / GitHub          | [:clapper:](https://www.youtube.com/watch?v=dZnTDrRqeJY&t=752s)  | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#47)  |                  
+| &nbsp;       | Wrap up                         | [:clapper:](https://www.youtube.com/watch?v=dZnTDrRqeJY&t=870s)  | [:desktop_computer:](https://dukestatsci.github.io/computing_bootcamp_2021/slides/01_r_version_control.html#48)  |   
